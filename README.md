@@ -1,3 +1,4 @@
+```java
 package ultimaterobot;
 
 import robocode.*;
@@ -282,3 +283,4 @@ public class Shredder extends AdvancedRobot{
 		execute();
 	}
 }
+```
