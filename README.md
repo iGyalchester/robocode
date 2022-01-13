@@ -92,7 +92,7 @@ public class Shredder extends AdvancedRobot{
 	    double radarTurnAngle = Utils.normalRelativeAngle(angleToEnemy - getRadarHeadingRadians());
 	    // Distance we want to scan from middle of enemy to either side
 	    // The 36.0 is how many units from the center of the enemy robot it scans.
-	    double extraTurn = Math.min( Math.atan( 36.0 / e.getDistance() ), Rules.RADAR_TURN_RATE_RADIANS );
+	    double extraTurn = Math.min( Math.atan( 40.0 / e.getDistance() ), Rules.RADAR_TURN_RATE_RADIANS );
 	
 	    // Adjust the radar turn so it goes that much further in the direction it is going to turn
 	    if (radarTurnAngle < 0){
@@ -107,7 +107,7 @@ public class Shredder extends AdvancedRobot{
 		double gunTurnAngle = Utils.normalRelativeAngle(angleToEnemy - getGunHeadingRadians());
 		double enemyLateralSpeed = e.getVelocity() * Math.sin(e.getHeadingRadians() - angleToEnemy);
 		// 30.0 is the factor to reduce the offset
-		double offset = (enemyLateralSpeed / 30.0);
+		double offset = (enemyLateralSpeed / 40.0);
 		
 		gunTurnAngle += offset;
 		setTurnGunRightRadians(gunTurnAngle);
@@ -171,7 +171,7 @@ public class Shredder extends AdvancedRobot{
 		double enemyEnergyInPowerRange = map(enemyEnergy, 0.1, 3, 0.1, 3);
 		double gunTurnAngleInPowerRange = map(gunTurnAngle, 180, 20, 0.1, 3);
 		double robotEnergyInPowerRange = map(this.getEnergy(), 0.5, 20, 0.1, 3);
-		double firePower = ((enemyDistanceInPowerRange * 0.45) + (enemyEnergyInPowerRange * 0.05) + (gunTurnAngleInPowerRange * 0.45) + (robotEnergyInPowerRange * 0.05));
+		double firePower = ((enemyDistanceInPowerRange * 0.30) + (enemyEnergyInPowerRange * 0.025) + (gunTurnAngleInPowerRange * 0.35) + (robotEnergyInPowerRange * 0.025));
 		System.out.println("FirePower: " + firePower);
 		return firePower;
 	}
@@ -262,13 +262,13 @@ public class Shredder extends AdvancedRobot{
 	public void onRobotDeath(RobotDeathEvent e) {
 		this.enemies = getOthers();
 		if (this.enemies > 10) {
-			this.moveSpeed = 5;
+			this.moveSpeed = 10;
 			setMaxVelocity(this.moveSpeed);
 		} else if (this.enemies > 1) {
-			this.moveSpeed = 6;
+			this.moveSpeed = 10;
 			setMaxVelocity(this.moveSpeed);
 		} else if (this.enemies == 1) {
-			this.moveSpeed = 8;
+			this.moveSpeed = 10;
 			setMaxVelocity(this.moveSpeed);
 		}
 	}   
@@ -283,4 +283,5 @@ public class Shredder extends AdvancedRobot{
 		execute();
 	}
 }
+
 ```
