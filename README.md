@@ -265,10 +265,10 @@ public class Shredder extends AdvancedRobot{
 			this.moveSpeed = 15;
 			setMaxVelocity(this.moveSpeed);
 		} else if (this.enemies > 1) {
-			this.moveSpeed = 10;
+			this.moveSpeed = 20;
 			setMaxVelocity(this.moveSpeed);
 		} else if (this.enemies == 1) {
-			this.moveSpeed = 10;
+			this.moveSpeed = 20;
 			setMaxVelocity(this.moveSpeed);
 		}
 	}   
